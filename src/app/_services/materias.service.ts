@@ -44,4 +44,40 @@ export class MateriasService {
         })
       );
   }
+// ---------------------------------
+  getEstudiante() {
+    return this.http
+      .get<any>('http://localhost:8081/servicesRest/WsColegio/getEstudiantes')
+      .pipe(
+        map((estudiante) => {
+          return estudiante;
+        })
+      );
+  }
+
+  getByIdEstudiante(idEstudiante: string) {
+    return this.http
+      .post<any>(
+        'http://localhost:8081/servicesRest/WsColegio/getEstudiantesMateriasById',
+        JSON.stringify(idEstudiante),
+      )
+      .pipe(
+        map((estudiante) => {
+          return estudiante;
+        })
+      );
+  }
+
+  getnombreEstudiante(nombre: string) {
+    return this.http
+      .post<any>(
+        'http://localhost:8081/servicesRest/WsColegio/getEstudiantesMateriasById',
+        JSON.stringify(nombre),
+      )
+      .pipe(
+        map((estudiante) => {
+          return estudiante;
+        })
+      );
+  }
 }

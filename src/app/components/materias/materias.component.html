@@ -27,7 +27,7 @@
                             <label for="grupo">
                                 Grupo
                             </label>
-                            <select class="form-control" id="grado">
+                            <select class="form-control" id="grudo">
                                 <option selected></option>
                             </select>
                         </div>
@@ -63,11 +63,33 @@
                         <button class="btn btn-primary px-md-3" id="" (click)="findMateria()"
                             title="Buscar">Buscar</button>
                     </div>
-                    
-                    <div class="col-md-auto mt-3">
+
+                    <!-- <div class="col-md-auto mt-3">
                         <a href="javascript:;" onclick="limpiarFormulario()"
                             class="text-primary font-weight-bold"><u>Limpiar filtros</u></a>
-                        <!-- <input type="button" onclick="limpiarFormulario()" value="Limpiar formulario"> -->
+                        <input type="button" onclick="limpiarFormulario()" value="Limpiar formulario">
+                    </div> -->
+
+                    <button class="btn btn-default" nn(click)="limpiarFormulario">Limpiar</button>
+                    
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="materia">
+                                Estudiante
+                            </label>
+                            <select class="form-control" id="Estudiante" (change)="capturarIde($event)">
+
+                                <option selected></option>
+                                <option *ngFor="let item of listaEstudianteSelect" [value]="item.idEstudiante">
+                                    {{item.identificacion}}
+                                </option>
+                                <!-- ___________________________________-->
+                            
+
+
+                            </select>
+                        </div>
                     </div>
 
                 </div>
