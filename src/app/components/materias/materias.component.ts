@@ -29,12 +29,15 @@ export class MateriasComponent implements OnInit {
       .getMaterias()
       .pipe(first())
       .subscribe((data) => (this.listaMateriasSelect = data));
-
+      console.log(this.listaMateriasSelect);
+      
       // estudiante
       this.materiasService
       .getEstudiante()
       .pipe(first())
-      .subscribe((data) => (this.listaMateriasSelect = data));
+      .subscribe((data) => (this.listaEstudianteSelect = data));
+      
+      
   }
 
   findMateria(): void {
@@ -54,23 +57,14 @@ export class MateriasComponent implements OnInit {
     this.materiaSeleccionado.idMateria = Number(idSeleccionado);
   }
 
-  // limpiarFormulario(){
-  //   this.materiasService.reset();
- 
-  // }
-
-  limpiarformulario(){
-    this.findMateria{}
-  }
-
   // ----------------------------------------------------------------------------
 
-  // ngOnInite(): void {
-  //   this.materiasService
-  //     .getMaterias()
-  //     .pipe(first())
-  //     .subscribe((data) => (this.listaMateriasSelect = data));
-  // }
+  //  ngOnInite(): void {
+  //    this.materiasService
+  //      .getEstudiante()
+  //      .pipe(first())
+  //      .subscribe((data) => (this.listaEstudianteSelect = data));
+  //  }
 
   // findMateriae(): void {
   //     this.materiasService
@@ -79,9 +73,9 @@ export class MateriasComponent implements OnInit {
   //     .subscribe((data) => (this.listaEstudiante = data));
   // }
 
-  capturarIde($event: any): void {
-    let idSeleccionado = $event.target.options[$event.target.options.selectedIndex].value;
-    this.materiaSeleccionado.idMateria = Number(idSeleccionado);
+    capturarIde($event: any): void {
+      let idSeleccionado = $event.target.options[$event.target.options.selectedIndex].value;
+      this.materiaSeleccionado.idMateria = Number(idSeleccionado);
   }
  
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { MateriaInput } from '../_models/materiaInput';
+import { EstudianteInput } from '../_models/materiaInput';
 
 @Injectable({
   providedIn: 'root',
@@ -68,16 +69,16 @@ export class MateriasService {
       );
   }
 
-  getnombreEstudiante(nombre: string) {
-    return this.http
-      .post<any>(
-        'http://localhost:8081/servicesRest/WsColegio/getEstudiantesMateriasById',
-        JSON.stringify(nombre),
-      )
-      .pipe(
-        map((estudiante) => {
-          return estudiante;
-        })
-      );
-  }
+  // getnombreEstudiante(nombre: string) {
+  //   return this.http
+  //     .post<any>(
+  //       'http://localhost:8081/servicesRest/WsColegio/getEstudiantesMateriasById',
+  //       JSON.stringify(nombre),
+  //     )
+  //     .pipe(
+  //       map((estudiante) => {
+  //         return estudiante;
+  //       })
+  //     );
+  // }
 }

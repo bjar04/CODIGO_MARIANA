@@ -1,4 +1,4 @@
-export interface EstudianteInput {
-    idEstudiante: number;
-  }
+// export interface EstudianteInput {
+//     idEstudiante: number;
+//   }
   
