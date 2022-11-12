@@ -8,6 +8,7 @@ import { Materia } from 'src/app/_models/materias';
 import { Estudiante } from 'src/app/_models/materias';
 import { MateriasService } from 'src/app/_services/materias.service';
 
+
 @Component({
   selector: 'app-materias',
   templateUrl: './materias.component.html',
