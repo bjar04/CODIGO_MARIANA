@@ -48,11 +48,14 @@ export class MateriasComponent implements OnInit {
       
   }
 
+  // metodo al dar click al botón buscar
   findMateria(): void {
+    // alerta por si no hay ningún filtro seleccionado
     if(this.materiaSeleccionado.idMateria == undefined || this.materiaSeleccionado.idMateria == 0){
       alert('Por favor seleccione una materia para su busqueda');
       return;
     }
+    
     
       this.materiasService
         .getMateriasByIdJson(this.materiaSeleccionado)
