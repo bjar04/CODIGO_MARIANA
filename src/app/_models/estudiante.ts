@@ -1,4 +1,5 @@
-// export interface Estudiante {
-//     idEstudiante: number;
-//     identificacion: string;
-//   }
+export interface Estudiante {
+    idEstudiante: number;
+    identificacion: string;
+    nombre: string;
+  }

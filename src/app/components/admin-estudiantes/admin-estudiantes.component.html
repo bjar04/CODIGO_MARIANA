@@ -51,8 +51,16 @@
                             <label for="grupo">
                                 Estudiante
                             </label>
-                            <select class="form-control" id="estudiante">
-                                <option selected></option>
+                            <select class="form-control" id="Estudiante" (change)="capturarIde($event)">
+
+                                <option selected>Seleccionar</option>
+                                <option *ngFor="let item of listaEstudianteSelect" [value]="item.idEstudiante">
+                                    {{item.nombre}} -- {{item.identificacion}}
+                                </option>
+                                <!-- ___________________________________-->
+                            
+
+
                             </select>
                         </div>
                     </div>
@@ -83,7 +91,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class="form-control" id="Estudiante" (change)="capturarIde($event)">
+                        <option *ngFor="let item of listaEstudianteSelect" [value]="item.idEstudiante">
+                            {{item.nombre}} -- {{item.identificacion}}
+                        </option>
+                        <!-- ___________________________________-->
                     <td class="">2022101</td>
                     <td>TI 1088123456</td>
                     <td>Camila Fernández Rojas</td>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
+import { Estudiante } from '../_models/estudiante';
+import { EstudianteInput } from '../_models/estudianteInput';
 import { MateriaInput } from '../_models/materiaInput';
 
 

@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { makeStateKey } from '@angular/platform-browser';
 import { first } from 'rxjs';
 import { MateriaInput } from 'src/app/_models/materiaInput';
-import { EstudianteInput } from 'src/app/_models/materiaInput';
+import { EstudianteInput } from 'src/app/_models/estudianteInput';
 import { Materia } from 'src/app/_models/materias';
-import { Estudiante } from 'src/app/_models/materias';
+import { Estudiante } from 'src/app/_models/estudiante';
 import { MateriasService } from 'src/app/_services/materias.service';
 
 
@@ -25,18 +25,25 @@ export class MateriasComponent implements OnInit {
 
   constructor(private materiasService: MateriasService) {}
 
-  ngOnInit(): void {
+  // Al cargar la página acceda a materia service e importa el servicio getMaterias
+  ngOnInit(): void {  
     this.materiasService
       .getMaterias()
       .pipe(first())
-      .subscribe((data) => (this.listaMateriasSelect = data));
+      .subscribe(data => {
+        //lista de todas las materias
+        this.listaMateriasSelect = data; 
+        //lista de una materias 
+        this.listaMaterias = data;
+      }
+      );
       console.log(this.listaMateriasSelect);
       
       // estudiante
-      this.materiasService
-      .getEstudiante()
-      .pipe(first())
-      .subscribe((data) => (this.listaEstudianteSelect = data));
+      // this.materiasService
+      // .getEstudiante()
+      // .pipe(first())
+      // .subscribe((data) => (this.listaEstudianteSelect = data));
       
       
   }
@@ -74,9 +81,9 @@ export class MateriasComponent implements OnInit {
   //     .subscribe((data) => (this.listaEstudiante = data));
   // }
 
-    capturarIde($event: any): void {
-      let idSeleccionado = $event.target.options[$event.target.options.selectedIndex].value;
-      this.materiaSeleccionado.idMateria = Number(idSeleccionado);
+  capturarIde($event: any): void {
+   let idSeleccionado = $event.target.options[$event.target.options.selectedIndex].value;
+   this.materiaSeleccionado.idMateria = Number(idSeleccionado);
   }
  
 }
