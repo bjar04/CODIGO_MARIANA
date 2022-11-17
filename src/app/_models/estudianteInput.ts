@@ -1,3 +1,4 @@
-export interface EstudianteInput {
+export class EstudianteInput {
     idEstudiante: number;
+    
 }

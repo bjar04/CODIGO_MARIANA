@@ -1,60 +1,54 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-admin-estudiantes',
-//   templateUrl: './admin-estudiantes.component.html',
-//   styleUrls: []
-// })
-// export class AdminEstudiantesComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit(): void {
-//   }
-
-// }
-
-
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { makeStateKey } from '@angular/platform-browser';
 import { first } from 'rxjs';
-import { MateriaInput } from 'src/app/_models/materiaInput';
 import { EstudianteInput } from 'src/app/_models/estudianteInput';
-import { Materia } from 'src/app/_models/materias';
 import { Estudiante } from 'src/app/_models/estudiante';
-import { MateriasService } from 'src/app/_services/materias.service';
+import { EstudianteService } from 'src/app/_services/estudiantes.service';
 
 
 @Component({
   selector: 'app-admin-estudiantes',
   templateUrl: './admin-estudiantes.component.html',
   styleUrls: [],
-  providers: [DatePipe, MateriasService],
+  providers: [DatePipe, EstudianteService],
 })
 export class AdminEstudiantesComponent implements OnInit {
-  listaMaterias: Materia[] = [];
   listaEstudiante: Estudiante[] = [];
-  listaMateriasSelect: Materia[] = [];
   listaEstudianteSelect: Estudiante[] = [];
-  materiaSeleccionado: MateriaInput = new MateriaInput();
-  // EstudianteSeleccionado: EstudianteInput = new EstudianteInput();
+  estudianteSeleccionado: EstudianteInput = new EstudianteInput();
 
-  constructor(private materiasService: MateriasService) {}
+  constructor(private estudiantesService: EstudianteService) {}
 
   ngOnInit(): void {
-    this.materiasService
+    this.estudiantesService
       // estudiante
-      this.materiasService
+      this.estudiantesService
       .getEstudiante()
       .pipe(first())
-      .subscribe((data) => (this.listaEstudianteSelect = data));
-       
+      .subscribe (data => {
+        this.listaEstudianteSelect = data;
+        this.listaEstudiante = data;
+      }
+      );
   }
 
-    capturarIde($event: any): void {
-      let idSeleccionado = $event.target.options[$event.target.options.selectedIndex].value;
-      this.materiaSeleccionado.idMateria = Number(idSeleccionado);
+  // método al dar click al botón buscar
+findEstudiante(): void {
+  // alerta por si no hay ningún filtro seleccionado
+  if(this.estudianteSeleccionado.idEstudiante == undefined || this.estudianteSeleccionado.idEstudiante == 0){
+    alert('Por favor seleccione un estudiante para su búsqueda');
+    return;
   }
+    this.estudiantesService
+      .getEstudianteByIdJson(this.estudianteSeleccionado)
+      .pipe(first())
+      .subscribe((data) => (this.listaEstudiante = data));
+      
+}
+  capturarIde($event: any): void {
+    let idSeleccionado = $event.target.options[$event.target.options.selectedIndex].value;
+    this.estudianteSeleccionado.idEstudiante = Number(idSeleccionado);
+}
  
 }

@@ -40,9 +40,21 @@
                                     <select class="form-control" id="tipoIdentificacion">
                                         <option selected></option>
                                         <option value="1">TI</option>
+                                        <option value="2">CC</option>
                                     </select>
                                 </div>
-                                <input type="text" class="form-control" id="numero-documento" name="Número documento" placeholder="Número documento">
+                                <!-- <input type="text" class="form-control" id="numero-documento" name="Número documento" placeholder="Número documento"> -->
+                                <select class="form-control" id="Estudiante" (change)="capturarIde($event)" >
+
+                                    <option selected>Seleccionar</option>
+                                    <option *ngFor="let item of listaEstudianteSelect" [value]="item.idEstudiante">
+                                        {{item.identificacion}}
+                                    </option>
+                                    <!-- ___________________________________-->
+
+
+
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -51,11 +63,11 @@
                             <label for="grupo">
                                 Estudiante
                             </label>
-                            <select class="form-control" id="Estudiante" (change)="capturarIde($event)">
+                            <select class="form-control" id="Estudiante" (change)="capturarIde($event)" >
 
                                 <option selected>Seleccionar</option>
                                 <option *ngFor="let item of listaEstudianteSelect" [value]="item.idEstudiante">
-                                    {{item.nombre}} -- {{item.identificacion}}
+                                    {{item.nombre}} - {{item.identificacion}}
                                 </option>
                                 <!-- ___________________________________-->
                             
@@ -65,16 +77,19 @@
                         </div>
                     </div>
                     <div class="col-md-auto mt-3">
-                        <button class="btn btn-primary px-md-3" id="" type="submit" title="Buscar">Buscar</button>
+                        <button class="btn btn-primary px-md-3" id="" (click)="findEstudiante()"
+                            title="Buscar">Buscar</button>
                     </div>
                     <div class="col-md-auto mt-3">
-                        <a href="javascript:;" class="text-primary font-weight-bold"><u>Limpiar filtros</u></a>
+                        <input type="reset" class="btn btn-link text-primary font-weigth-bold" value="Limpiar filtros">
                     </div>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+<!-- Tabla de Resultados -->
 <div class="card">
     <div class="card-body">
         <h5 class="mb-3 title">Resultados</h5>
@@ -91,45 +106,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="form-control" id="Estudiante" (change)="capturarIde($event)">
-                        <option *ngFor="let item of listaEstudianteSelect" [value]="item.idEstudiante">
-                            {{item.nombre}} -- {{item.identificacion}}
-                        </option>
-                        <!-- ___________________________________-->
-                    <td class="">2022101</td>
-                    <td>TI 1088123456</td>
-                    <td>Camila Fernández Rojas</td>
+                <tr *ngFor="let item of listaEstudianteSelect">
+                    <td>{{item.idEstudiante}}</td>
+                    <td>TI {{item.identificacion}}</td>
+                    <td>{{item.nombre}}</td>
                     <td>10</td>
-                    <td>A</td>
+                    <td>1</td>
                     <td>En curso</td>
                     <td class="text-center">
-                        <button class="btn btn-outline-secondary mx-1" type="button" title="eye"><i class="fa fa-eye"></i></button>
-                        <button class="btn btn-outline-secondary mx-1" data-toggle="modal" data-target="#modalEstudiante" type="button" title="trash"><i class="fa fa-trash"></i></button>
+                        <button class="btn btn-outline-secondary mx-1" type="button" title="eye"><i
+                                class="fa fa-eye"></i></button>
+                        <button class="btn btn-outline-secondary mx-1" data-toggle="modal"
+                            data-target="#modalEstudiante" type="button" title="trash"><i
+                                class="fa fa-trash"></i></button>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="">2022101</td>
-                    <td>TI 1088123456</td>
-                    <td>Camila Fernández Rojas</td>
-                    <td>10</td>
-                    <td>A</td>
-                    <td>En curso</td>
-                    <td class="text-center">
-                        <button class="btn btn-outline-secondary mx-1" type="button" title="eye"><i class="fa fa-eye"></i></button>
-                        <button class="btn btn-outline-secondary mx-1" data-toggle="modal" data-target="#modalEstudiante" type="button" title="trash"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="">2022101</td>
-                    <td>TI 1088123456</td>
-                    <td>Camila Fernández Rojas</td>
-                    <td>10</td>
-                    <td>A</td>
-                    <td>En curso</td>
-                    <td class="text-center">
-                        <button class="btn btn-outline-secondary mx-1" type="button" title="eye"><i class="fa fa-eye"></i></button>
-                        <button class="btn btn-outline-secondary mx-1" data-toggle="modal" data-target="#modalEstudiante" type="button" title="trash"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
             </tbody>
@@ -139,7 +129,8 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="modalEstudiante" tabindex="-1" role="dialog" aria-labelledby="modalEstudiante" aria-hidden="true">
+<div class="modal fade" id="modalEstudiante" tabindex="-1" role="dialog" aria-labelledby="modalEstudiante"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -152,7 +143,8 @@
                 ¿Estás seguro que deseas eliminar el registro de estudiante?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-dismiss="modal" type="button" title="no">No</button>
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal" type="button"
+                    title="no">No</button>
                 <button type="button" class="btn btn-primary">Sí, eliminar</button>
             </div>
         </div>

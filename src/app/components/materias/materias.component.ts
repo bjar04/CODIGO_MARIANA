@@ -3,11 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { makeStateKey } from '@angular/platform-browser';
 import { first } from 'rxjs';
 import { MateriaInput } from 'src/app/_models/materiaInput';
-import { EstudianteInput } from 'src/app/_models/estudianteInput';
 import { Materia } from 'src/app/_models/materias';
-import { Estudiante } from 'src/app/_models/estudiante';
 import { MateriasService } from 'src/app/_services/materias.service';
-
 
 @Component({
   selector: 'app-materias',
@@ -16,12 +13,9 @@ import { MateriasService } from 'src/app/_services/materias.service';
   providers: [DatePipe, MateriasService],
 })
 export class MateriasComponent implements OnInit {
-  listaMaterias: Materia[] = [];
-  listaEstudiante: Estudiante[] = [];
+  listaMaterias: Materia[] = []; 
   listaMateriasSelect: Materia[] = [];
-  listaEstudianteSelect: Estudiante[] = [];
   materiaSeleccionado: MateriaInput = new MateriaInput();
-  // EstudianteSeleccionado: EstudianteInput = new EstudianteInput();
 
   constructor(private materiasService: MateriasService) {}
 
@@ -39,13 +33,6 @@ export class MateriasComponent implements OnInit {
       );
       console.log(this.listaMateriasSelect);
       
-      // estudiante
-      // this.materiasService
-      // .getEstudiante()
-      // .pipe(first())
-      // .subscribe((data) => (this.listaEstudianteSelect = data));
-      
-      
   }
 
   // metodo al dar click al botón buscar
@@ -55,7 +42,6 @@ export class MateriasComponent implements OnInit {
       alert('Por favor seleccione una materia para su busqueda');
       return;
     }
-    
     
       this.materiasService
         .getMateriasByIdJson(this.materiaSeleccionado)
@@ -67,26 +53,4 @@ export class MateriasComponent implements OnInit {
     let idSeleccionado = $event.target.options[$event.target.options.selectedIndex].value;
     this.materiaSeleccionado.idMateria = Number(idSeleccionado);
   }
-
-  // ----------------------------------------------------------------------------
-
-  //  ngOnInite(): void {
-  //    this.materiasService
-  //      .getEstudiante()
-  //      .pipe(first())
-  //      .subscribe((data) => (this.listaEstudianteSelect = data));
-  //  }
-
-  // findMateriae(): void {
-  //     this.materiasService
-  //     .getByIdEstudiante(this.EstudianteSeleccionado)
-  //     .pipe(first())
-  //     .subscribe((data) => (this.listaEstudiante = data));
-  // }
-
-  capturarIde($event: any): void {
-   let idSeleccionado = $event.target.options[$event.target.options.selectedIndex].value;
-   this.materiaSeleccionado.idMateria = Number(idSeleccionado);
-  }
- 
 }
