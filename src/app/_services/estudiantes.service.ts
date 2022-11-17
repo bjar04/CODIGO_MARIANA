@@ -33,10 +33,10 @@ export class EstudianteService {
             );
             }
 
-        getEstudianteByIdJson(estudianteInput: any) {
+        getEstudianteMateriaByIdJson(estudianteInput: any) {
             return this.http
                 .post<any>(
-                    'http://localhost:8081/servicesRest/WsColegio/getEstudiantesMateriasByIdJson',
+                    'http://localhost:8081/servicesRest/WsColegio/getEstudiantesMateriasById',
                     { idEstudiante: estudianteInput.idEstudiante}
                 )
                 .pipe(

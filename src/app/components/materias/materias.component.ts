@@ -27,7 +27,7 @@ export class MateriasComponent implements OnInit {
       .subscribe(data => {
         //lista de todas las materias
         this.listaMateriasSelect = data; 
-        //lista de una materias 
+        //lista de materias 
         this.listaMaterias = data;
       }
       );

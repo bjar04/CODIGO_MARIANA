@@ -63,7 +63,7 @@
                             <label for="grupo">
                                 Estudiante
                             </label>
-                            <select class="form-control" id="Estudiante" (change)="capturarIde($event)" >
+                            <select class="form-control" id="Estudiante" >
 
                                 <option selected>Seleccionar</option>
                                 <option *ngFor="let item of listaEstudianteSelect" [value]="item.idEstudiante">
@@ -110,7 +110,7 @@
                     <td>{{item.idEstudiante}}</td>
                     <td>TI {{item.identificacion}}</td>
                     <td>{{item.nombre}}</td>
-                    <td>10</td>
+                    <td>{{item.nota}}</td>
                     <td>1</td>
                     <td>En curso</td>
                     <td class="text-center">
